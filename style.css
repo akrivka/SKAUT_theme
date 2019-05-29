@@ -1,74 +1,18 @@
 /*
-	Theme Name: SKAUT
+	Theme Name: SKAUT-Basic
 	Theme URI: www.skaut.cz
-	Description: SKAUT Theme for clubs
-	Version: 0.1.1
-	Author: Adam Křivka
+	Description: SKAUT Wordpress Theme for units
+	Version: 0.1.3
+	Author: Adam Krivka
 	Author URI: 
 	Tags: SKAUT, HTML5, CSS3
 
 	License: MIT
 	License URI: http://opensource.org/licenses/mit-license.php
-	asdfasdf
 */
 
 /*------------------------------------*\
-    MAIN
-\*------------------------------------*/
-
-/* global box-sizing */
-*,
-*:after,
-*:before {
-	-moz-box-sizing:border-box;
-	box-sizing:border-box;
-	-webkit-font-smoothing:antialiased;
-	font-smoothing:antialiased;
-	text-rendering:optimizeLegibility;
-}
-/* html element 62.5% font-size for REM use */
-html {
-	font-size:62.5%;
-}
-
-/* clear */
-.clear:before,
-.clear:after {
-    content:' ';
-    display:table;
-}
-
-.clear:after {
-    clear:both;
-}
-.clear {
-    *zoom:1;
-}
-img {
-	max-width:100%;
-	vertical-align:bottom;
-}
-a {
-	color:#444;
-	text-decoration:none;
-}
-a:hover {
-	color:#444;
-}
-a:focus {
-	outline:0;
-}
-a:hover,
-a:active {
-	outline:0;
-}
-input:focus {
-	outline:0;
-	border:1px solid #04A4CC;
-}
-
-/*------------------------------------*\
-    STRUCTURE
+      Relevantni veci, aneb, co jsem psal ja (skoro)
 \*------------------------------------*/
 
 /* wrapper */
@@ -77,96 +21,66 @@ input:focus {
 	width:95%;
 	margin:0 auto;
 	position:relative;
+	background: #657F6F; /* barva pozadí */
 }
+
 /* header */
 .header {
 
 }
 
-.slideshow {
-display:none
-}
-/* logo */
-img.banner {
-	width: 100px;
-	height: 100px;
-	background-position: center center;
-	background-repeat: no-repeat;
-}
-
-.logo-img {
-
-}
-/* nav */
-.nav {
-
-}
-/* sidebar */
-.sidebar {
-
-}
-/* footer */
-.footer {
-
-}
-
 /* */
 .navbar {
-	display:flex;
-	justify-content: flex-start;
-	float:left;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	width:100%;
 	overflow: hidden;
 	top: 0;
 	left: 0;
 	z-index:999;
-	background: #657F6F;
 }
 
 .navbar_responsive {
-	display: block;
-	position: relative;
+	flex-wrap: wrap;
+}
+
+.icon {
+	display: none;
+
+	font-family: themix, sans-serif;
+	font-size: 18pt;
+	color: #ECDCAF;
+	padding: 0px 20px 0px 0px;
+	vertical-align: middle;
 }
 
 .navbar_responsive .icon {
-	font-family: themix, sans-serif;
-	font-size: 10pt;
-	position: absolute;
-	padding: 10px 10px;
-	right: 0;
-	top: 0;
+	display: block;
 }
 
 .navlogo {
-	width:200px;
-	display:block;
-	float:left;
-	height:auto;
 	padding: 10px 10px;
-}
-
-.nav {
-	display: block;
-	float: right;
-	height: 60px;
-	padding: 0 5px; /* odsazení */
-	text-align: center;
-	overflow: hidden; /* nic nedělat, když to přeteče mimo svůj boxík */
+	width: 200px;
+	height: auto;
 }
 
 /* Menu Bar List */
 ul.navmenu {
+	padding: 0;
 	font-family: themix, sans-serif;
 	font-size: 10pt;
-	float: right;
 	list-style: none; /* Zbavení se "bullet-pointů" */
-	width: 100%;
-	height: 100%;
 	text-align: right;
 }
 
+ul.navmenu_responsive, .navmenu_responsive {
+	flex-basis: 100%;
+	float: center;
+	text-align: center;
+}
+
 ul.navmenu li{
-	margin: 0 0 12px 0;
 	display: inline-block;
 	text-align: right;
 	vertical-align: middle;
@@ -174,11 +88,13 @@ ul.navmenu li{
 }
 
 ul.navmenu_responsive li{
-	margin: 0 0 12px 0;
 	display: list-item;
-	float: right;
 	position: static;
 	text-align: center;
+	line-height:40px;
+}
+.navmenu_hidden {
+	display: none;
 }
 
 ul.navmenu a { /* Menu link styling */
@@ -187,47 +103,73 @@ ul.navmenu a { /* Menu link styling */
 	text-decoration: none; /* Gets rid of underline for links */
 }
 
-/* Styling when a link is hovered over */
+/* změna barvy, když se na to najede */
 ul.navmenu li:hover a {
-	background: #F49E00; /* Background color for hovered link */
-	color: #FFFFFF; /* Text color of links */
-	text-shadow:1px 1px 0 #000000;
+	color: #F49E00; /* Text color of links */
 }
 
-/* Displays Links as Blocks */
-ul.navmenu li ul a {
-	display:flex;
+/* úvodní slideshow */
+.slideshow {
+	display:none
 }
 
-ul.navmenu li * a:hover { /* Styling for every link that is hovered over */
-	background: #123456;
-	color: #FFFFFF;
-	text-shadow:1px 1px 0 #000000;
+img.slideshow {
+	width: 700px;
+	height: 400px;
+	object-fit: cover;
 }
 
+.main {
+	padding: 20px;
+}
+
+.post {
+	display: flex;
+	width: 100%;
+	overflow: hidden;
+	padding: 20px;
+}
+
+.thumbnail {
+	margin-right: 20px;
+}
+
+/* sidebar */
+.sidebar {
+
+}
+
+/* footer */
+.footer {
+	display: inline-block;
+	position: absolute;
+	right: 0;
+	color: #657F6F;
+	padding: 20px;
+}
+
+.post {
+	color: #F6EBD8;
+}
+
+.date {
+	color: #F6EBD8;
+}
+
+.view-article {
+	color: #ECDCAF;
+}
+
+
 /*------------------------------------*\
-    PAGES
+	typografie (z cdn.skauting.cz)
 \*------------------------------------*/
-
-
-
-/*------------------------------------*\
-    IMAGES
-\*------------------------------------*/
-
-
-
-/*------------------------------------*\
-	TYPOGRAPHY (z cdn.skauting.cz)
-\*------------------------------------*/
-	display:flex;
 
 @charset "utf-8";
 /* CSS Document */
 @font-face {
     font-family: 'themix';
     src: url('https://cdn.skauting.cz/fonts/TheMix_LT_400.eot');
-	display:flex;
     src: url('https://cdn.skauting.cz/fonts/TheMix_LT_400.eot? #iefix') format('embedded-opentype');
     src: url('https://cdn.skauting.cz/fonts/TheMix_LT_400.woff') format('woff'),
 		 url('https://cdn.skauting.cz/fonts/TheMix_LT_400.woff2') format('woff2'),
@@ -288,18 +230,21 @@ ul.navmenu li * a:hover { /* Styling for every link that is hovered over */
 
 body {
 	font-family: themix, sans-serif;
-	color: #00395b;
 }
 
 h1 {
 	font-family: skautbold, sans-serif;
 	font-weight: normal;
 	font-size: 35px;
+	color: #F6EBD8;
 }
 
 h2 {
 	font-weight: 700;
 	font-size: 30px;
+	color: #ECDCAF;
+	margin: 0 !important;
+	padding: 0 !important;
 }
 
 h3 {
@@ -346,36 +291,88 @@ i {
 	font-weight: 700;
 }
 
-.uvodlogo {
-	max-height: 200px;
-	min-height: 70px
-}
-
 /*------------------------------------*\
-    RESPONSIVE
+    responzivní věci
 \*------------------------------------*/
 
-@media only screen and (min-width:320px) {
+@media only screen and (max-width:320px) {
 
 }
-@media only screen and (min-width:480px) {
+@media only screen and (max-width:480px) {
 
 }
-@media only screen and (min-width:768px) {
+@media only screen and (max-width:768px) {
+.thumbnail {
+	display: none;
+}
+}
+@media only screen and (max-width:1024px) {
 
 }
-@media only screen and (min-width:1024px) {
+@media only screen and (max-width:1140px) {
 
 }
-@media only screen and (min-width:1140px) {
-
-}
-@media only screen and (min-width:1280px) {
+@media only screen and (max-width:1280px) {
 
 }
 @media only screen and (-webkit-min-device-pixel-ratio:1.5),
 	   only screen and (min-resolution:144dpi) {
 
+}
+
+/*------------------------------------*\
+      dál jsem to nečet a je mi to fuk
+\*------------------------------------*/
+
+/* global box-sizing */
+*,
+*:after,
+*:before {
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	-webkit-font-smoothing:antialiased;
+	font-smoothing:antialiased;
+	text-rendering:optimizeLegibility;
+}
+/* html element 62.5% font-size for REM use */
+html {
+	font-size:62.5%;
+}
+
+/* clear */
+.clear:before,
+.clear:after {
+    content:' ';
+    display:table;
+}
+
+.clear:after {
+    clear:both;
+}
+.clear {
+    *zoom:1;
+}
+img {
+	max-width:100%;
+	vertical-align:bottom;
+}
+a {
+	color: inherit;
+	text-decoration:none;
+}
+a:hover {
+	color:#D4B66D;
+}
+a:focus {
+	outline:0;
+}
+a:hover,
+a:active {
+	outline:0;
+}
+input:focus {
+	outline:0;
+	border:1px solid #04A4CC;
 }
 
 /*------------------------------------*\

@@ -36,79 +36,84 @@
 	<div id="navbar" class="navbar">
 		<div class="navlogo">
 		<a href="<?php echo home_url(); ?>">
-			<img src="<?php echo get_template_directory_uri(); ?>/img/89oddil_horizontalni_logo.svg" alt="Logo" class="logo-img" style="margin:0 auto;">
+			<img src="<?php echo get_template_directory_uri(); ?>/img/89oddil_horizontalni_logo.png" alt="Logo" class="logo-img" style="margin:0 auto;">
 		</a>
 		</div>
-
-			<?php wp_nav_menu(array(
-				'theme_location'  => 'header-menu',
-				'container_id'    => 'navigation',
-				'menu_class'      => 'navmenu',
-				'menu_id'         => 'navmenu',
-				'fallback_cb'     => 'wp_page_menu'
-				));?>
-			<a href="javascript:void(0);" class="navmenu icon" onclick="roll_out()">
-				<i class="fa fa-bars"></i>
-			</a>
-			<script>
-				function roll_out(){
-					$("#navmenu").toggle();
-					document.getElementById("navmenu").classList.toggle('navmenu_responsive');
-					if($("#navmenu:hidden"))
-						$("ul.navmenu_responsive li").style.display = 'list-item';
-					else
-						document.getElementById("navmenu").style.display = 'none';
-				}
-			</script>
+		<a href="javascript:void(0);" class="navmenu icon" onclick="roll_out()">
+			<i class="fa fa-bars"></i>
+		</a>
+		<?php wp_nav_menu(array(
+			'theme_location'  => 'header-menu',
+			'container_id'    => 'navigation',
+			'menu_class'      => 'navmenu',
+			'menu_id'         => 'navmenu',
+			'fallback_cb'     => 'wp_page_menu'
+			));?>
 
 	</div>
-
 	<script>
 		var prev_offset = 100000;
+		var hidden = true;
+		var responsive = false;
 
 		respond_to_wrap();
 
 		$(window).resize(function() {
-			prev_offset = 100000;
+			// protoze se prvni offset rovna 100000, odeberem to prvne vsemu responsive classy a pak zkusi, jestli by se to wrapovalo
 			respond_to_wrap();
 		});
 
+		function roll_out(){
+			hidden = !hidden;
+			document.getElementById("navmenu").classList.toggle('navmenu_hidden');
+		}
+
 		function respond_to_wrap(){
+			/* pri kazdem resizu okna to projede vsechny elementy navmenu,
+			a jestli ma nejakej vetsi offset od vrchu nez ten predchozi
+			(tedy wrapuje se to), tak to zapne alternativni menu */
 			$('ul.navmenu li').each(function(i, elem) {
 				var offset = $(elem).offset().top + $('ul.navmenu').offset().top;
 
 				if(offset > prev_offset) {
 					console.log("wrapping!");
 					document.getElementById("navbar").classList.add('navbar_responsive');
-					$("#navmenu").hide();
+					document.getElementById("navmenu").classList.add('navmenu_responsive');
 
-					prev_offset = offset;
-					return false;
+					responsive = true;
+
+					return false; // skoncit
 				} else {
 					console.log("not wrapping!");
 					document.getElementById("navbar").classList.remove('navbar_responsive');
-					$("#navmenu").show();
+					document.getElementById("navmenu").classList.remove('navmenu_responsive');
+					document.getElementById("navmenu").classList.remove('navmenu_hidden');
+
+					responsive = false;
+
 					if (offset > 0)
 						prev_offset = offset;
 					else
 						prev_offset = 10000;
 				}
 			});
+			if (responsive) {
+				if (hidden)
+					document.getElementById("navmenu").classList.add('navmenu_hidden');
+				else
+					document.getElementById("navmenu").classList.remove('navmenu_hidden');
+			}
 		}
-
 	</script>
 	<!-- /nav -->
 
 	<!-- banner slideshow -->
 	<div class="banner">
-		<a href="<?php echo home_url(); ?>">
-			<img src="<?php echo get_template_directory_uri(); ?>/img/banner1.jpg" class="slideshow" style="width:100%">
-			<img src="<?php echo get_template_directory_uri(); ?>/img/banner2.jpg" class="slideshow" style="width:100%">
-		</a>
+		<img src="<?php echo get_template_directory_uri(); ?>/img/banner1.jpg" class="slideshow" style="width:100%">
+		<img src="<?php echo get_template_directory_uri(); ?>/img/banner2.jpg" class="slideshow" style="width:100%">
 	</div>
 
 	<script>
-	document.write("ahoj2");
 	var myIndex = 0;
 	carousel();
 

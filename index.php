@@ -1,10 +1,10 @@
 <?php get_header(); ?>
 
-	<main role="main">
+	<main class="main" role="main">
 		<!-- section -->
 		<section>
 
-			<h1><?php _e( 'Nejnovější příspěvky', 'html5blank' ); ?></h1>
+			<h1>Nejnovější příspěvky</h1>
 
 			<?php get_template_part('loop'); ?>
 
@@ -14,6 +14,6 @@
 		<!-- /section -->
 	</main>
 
-<!-- <?php get_sidebar(); ?> -->
+<?php get_sidebar(); ?>
 
 <?php get_footer(); ?>
