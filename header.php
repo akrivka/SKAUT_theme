@@ -36,7 +36,8 @@
 	<div id="navbar" class="navbar">
 		<div class="navlogo">
 		<a href="<?php echo home_url(); ?>">
-			<img src="<?php echo get_template_directory_uri(); ?>/img/89oddil_horizontalni_logo.png" alt="Logo" class="logo-img" style="margin:0 auto;">
+			<!-- <img src="<?php echo get_template_directory_uri(); ?>/img/89oddil_horizontalni_logo.png" alt="Logo" class="logo-img""> -->
+			<?php if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('logo')) ?>
 		</a>
 		</div>
 		<a href="javascript:void(0);" class="navmenu icon" onclick="roll_out()">
@@ -108,9 +109,8 @@
 	<!-- /nav -->
 
 	<!-- banner slideshow -->
-	<div class="banner">
-		<img src="<?php echo get_template_directory_uri(); ?>/img/banner1.jpg" class="slideshow" style="width:100%">
-		<img src="<?php echo get_template_directory_uri(); ?>/img/banner2.jpg" class="slideshow" style="width:100%">
+	<div>
+		<?php if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('slideshow')) ?>
 	</div>
 
 	<script>

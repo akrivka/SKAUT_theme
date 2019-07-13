@@ -3,7 +3,7 @@
 
 				<!-- copyright -->
 				<p class="copyright">
-					&copy; <?php echo date('Y'); ?> SKAUT-Basic šablona Adam Křivka, 89. oddíl Brno.
+				 <a href=/wp-admin>Admin</a>, 89. oddíl Brno <?php echo date('Y'); ?>
 				</p>
 				<!-- /copyright -->
 

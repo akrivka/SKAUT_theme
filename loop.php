@@ -24,14 +24,10 @@
 		<!-- post details -->
 		<span class="date"><?php the_time('j. F Y'); ?> <?php the_time('G:i'); ?></span>,
 		<span class="author"> <?php the_author_posts_link(); ?></span>
-		<!--
-		<span class="comments"><?php if (comments_open( get_the_ID() ) ) comments_popup_link( __( 'Leave your thoughts', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' )); ?></span>
-		-->
 		<!-- /post details -->
 
 		<?php html5wp_excerpt('html5wp_index');?>
 
-		<!-- <?php edit_post_link(); ?> -->
 		</div>
 
 		<hr>

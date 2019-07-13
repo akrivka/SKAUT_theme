@@ -406,5 +406,144 @@ function include_jquery() {
 
 }
 add_action('wp_enqueue_scripts', 'include_jquery');
+
+
+// Nacist media uploader
+function load_media_uploader() {
+    wp_enqueue_media();
+    wp_enqueue_script( 'wp-media-uploader', get_template_directory_uri() . '/js/wp_media_uploader.js', array( 'jquery' ), 1.0 );
+}
+add_action('admin_enqueue_scripts', 'load_media_uploader');
+
+
+// Logo / znak widget
+// Register sidebar
+if (function_exists('register_sidebar')) {
+    register_sidebar(
+        array(
+        'name' => 'Logo / znak',
+        'id' => 'logo',
+        'description' => 'Logo nebo znak v levé horním rohu stránky',
+        'before_widget' => '',
+        'after_widget' => '',
+        )
+    );
+}
+
+// Register widget
+add_action('widgets_init', 'logo_widget');
+function logo_widget() {
+    register_widget( 'logo' );
+}
+
+// Enqueue additional admin scripts
+function logo_admin() {
+    wp_enqueue_media();
+    wp_enqueue_script('logo_script', get_template_directory_uri() . '/js/logo-widget.js', false, '1.0.0', true);
+}
+add_action('admin_enqueue_scripts', 'logo_admin');
+
+// Widget
+class logo extends WP_Widget {
+
+    function logo() {
+        $widget_ops = array('classname' => 'logo');
+        $this->WP_Widget('logo-widget', 'Logo / znak', $widget_ops);
+    }
+
+    function widget($args, $instance) {
+        echo $before_widget;
 ?>
 
+    <img src="<?php echo esc_url($instance['image_uri']); ?>" />
+
+<?php
+        echo $after_widget;
+
+    }
+
+    function update($new_instance, $old_instance) {
+        $instance = $old_instance;
+        $instance['image_uri'] = strip_tags( $new_instance['image_uri'] );
+        return $instance;
+    }
+
+    function form($instance) {
+?>
+	<div class="form-group logo-uploader" id="logo-uploader">
+		Po vložení adresy obrázku na ni musíte kliknout a potvrdit enterem. </br>
+		<label for="<?= $this->get_field_id( 'image_uri' ); ?>">Logo oddílu / střediska / ...</label>
+        <input type="text" class="widefat" name="<?= $this->get_field_name( 'image_uri' ); ?>" value="<?= $instance['image_uri']; ?>" style="margin-top:5px;" />
+    </div>
+<?php
+    }
+}
+
+
+// Slideshow widget
+// Register sidebar
+if (function_exists('register_sidebar')) {
+    register_sidebar(
+        array(
+        'name' => 'Slideshow',
+        'id' => 'slideshow',
+        'description' => 'Prezentace obrázků na začátku stránky',
+        'before_widget' => '',
+        'after_widget' => '',
+        )
+    );
+}
+
+// Register widget
+add_action('widgets_init', 'slideshow_widget');
+function slideshow_widget() {
+    register_widget( 'slideshow' );
+}
+
+// Enqueue 
+function slideshow_admin() {
+    wp_enqueue_media();
+    wp_enqueue_script('slideshow_script', get_template_directory_uri() . '/js/slideshow-widget.js', false, '1.0.0', true);
+}
+add_action('admin_enqueue_scripts', 'slideshow_admin');
+
+// Slideshow widget
+class slideshow extends WP_Widget {
+
+    function slideshow() {
+        $widget_ops = array('classname' => 'slideshow');
+        $this->WP_Widget('slideshow-widget', 'Slideshow', $widget_ops);
+    }
+
+    function widget($args, $instance) {
+        echo $before_widget;
+
+        $urls=explode(",", $instance['image_uri']);
+        foreach($urls as $url) {
+            echo "<img src='"."$url"."' class='slideshow' />";
+        }
+
+        echo $after_widget;
+
+    }
+
+    function update($new_instance, $old_instance) {
+        $instance = $old_instance;
+        $instance['image_uri'] = strip_tags( $new_instance['image_uri'] );
+        console.log("jsem tu");
+        return $instance;
+    }
+
+    function form($instance) {
+?>
+	<div class="form-group slideshow-uploader" id="slideshow-uploader">
+		Po vložení adresy obrázku na ni musíte kliknout a potvrdit enterem. </br>
+		<label for="<?= $this->get_field_id( 'image_uri' ); ?>">Obrázky na úvodní prezentaci</label>
+        <input type="text" class="widefat" name="<?= $this->get_field_name( 'image_uri' ); ?>" value="<?= $instance['image_uri']; ?>" style="margin-top:5px;" />
+		<a href="#" class="nahraj-button" style="color : '#fff'; background : '#3bafda'; fontSize : '16px'; padding : '10px 15px';"> Nahrát obrázky </a>
+		<div><br><img src="#" style="display: none; width: 150px"/></div>')
+    </div>
+<?php
+    }
+}
+?>

@@ -67,9 +67,12 @@
 
 /* Menu Bar List */
 ul.navmenu {
-	padding: 0;
+	padding-right: 20px;
 	font-family: themix, sans-serif;
-	font-size: 10pt;
+	font-size: 17px;
+	font-weight: bold;
+	color: #F6EBD8;
+
 	list-style: none; /* Zbavení se "bullet-pointů" */
 	text-align: right;
 }
@@ -110,11 +113,11 @@ ul.navmenu li:hover a {
 
 /* úvodní slideshow */
 .slideshow {
-	display:none
+	display:none;
 }
 
 img.slideshow {
-	width: 700px;
+	width:100%;
 	height: 400px;
 	object-fit: cover;
 }
@@ -130,8 +133,24 @@ img.slideshow {
 	padding: 20px;
 }
 
+.single {
+	display: block;
+}
+
+.type-page, .type-post {
+	padding: 20px;
+	color: #ECDCAF;
+}
+
 .thumbnail {
+	width: 300px;
+	height: 300px;
 	margin-right: 20px;
+}
+
+img.thumbnail {
+	width: 100%;
+	height: 100%;
 }
 
 /* sidebar */
@@ -146,6 +165,10 @@ img.slideshow {
 	right: 0;
 	color: #657F6F;
 	padding: 20px;
+}
+
+.copyright {
+	color: #657F6F; /* barva pozadí */
 }
 
 .post {
@@ -264,15 +287,26 @@ h5 {
 }
 
 h6 {
+
 	font-weight: 700;
 	font-style: italic;
 	font-size: 17px;
 }
 
 p {
+	font-family: themix, sans-serif;
 	font-weight: 400;
 	font-style: normal;
 	font-size: 17px;
+	color: #ECDCAF;
+}
+
+ul, ol {
+	font-family: themix, sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 17px;
+	color: #ECDCAF;
 }
 
 b {
